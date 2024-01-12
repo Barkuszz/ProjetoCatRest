@@ -1,0 +1,301 @@
+<h1 class="title-header">Restaurantes</h1>
+<button onclick="gerenciar()" class="btn-primary btn-gerenciar" id="responsividade">Gerenciar</button>
+<div class="modal-container">
+
+    <div id="id01" class="modal">
+        <div class="modal-content sombra zoom">
+            <header class="modal-container titulo">
+                <span onclick="fechar()" class="btn-primary btn-fechar">&times;</span>
+                <h1>Gerenciar</h1>
+            </header>
+
+            <div class="barra">
+                <button class="tablink btn-modal modal-ativo"
+                    onclick="abrirGerenciador(event, 'Insert')">Insert</button>
+                <button class="tablink btn-modal" onclick="abrirGerenciador(event, 'Update')">Update</button>
+                <button class="tablink btn-modal" onclick="abrirGerenciador(event, 'Delete')">Delete</button>
+                <button class="tablink btn-modal" onclick="abrirGerenciador(event, 'InsertPrato')">Insert Prato</button>
+
+            </div>
+
+            <div id="Insert" class="modal-container ocultar" style="display: block;">
+                <form action="/restaurantes/insertRestaurante" method="POST" class="new-form">
+                    <div>
+                        <div class="form-control">
+                            <label for="CNPJ">CNPJ:</label>
+                            <input type="number" name="CNPJ" placeholder="CNPJ" required>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Nome_Restaurante">Nome do restaurante:</label>
+                            <input type="text" name="Nome_Restaurante" placeholder="Nome do Restaurante" required>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Id_Categoria_Rest">Categoria do restaurante:</label>
+                            <select title="Selecione uma categoria" name="Id_Categoria_Rest" required>
+                                {{#each resultsCategoria}}
+                                <option value="{{this.Id_Categoria}}">{{this.Id_Categoria}} - {{this.Nome}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Endereco">Endereço:</label>
+                            <input type="text" name="Endereco" placeholder="Endereco" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-control">
+                            <label for="Cidade">Cidade:</label>
+                            <input type="text" name="Cidade" placeholder="Cidade" required>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Estado">Estado:</label>
+                            <input type="text" name="Estado" placeholder="Estado" required>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Avaliação">Avaliação:</label>
+                            <select title="Selecione uma avaliação" name="Avaliação" required>
+                                <option value="1">1 Estrela</option>
+                                <option value="2">2 Estrelas</option>
+                                <option value="3">3 Estrelas</option>
+                                <option value="4">4 Estrelas</option>
+                                <option value="5">5 Estrelas</option>
+                            </select>
+                        </div>
+
+                        <input type="submit" value="Cadastrar" style="margin-top: 18px;" class="btn-primary">
+                    </div>
+                </form>
+            </div>
+
+
+            <div id="InsertPrato" class="modal-container ocultar">
+                <form action="/restaurantes/InsertPratos" method="POST" class="new-form">
+                    <div>
+                        <div class="form-control">
+                            <label for="CNPJ">CNPJ:</label>
+                            <select title="Selecione o CNPJ" name="CNPJ" required>
+                                {{#each restaurantes}}
+                                <option value="{{this.CNPJ}}">{{this.CNPJ}} - {{this.Nome_Restaurante}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Nome_Prato">Nome do Prato:</label>
+                            <input type="text" name="Nome_Prato" placeholder="Nome do Prato" required>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Id_TipoPrato">Tipo do Prato:</label>
+                            <select title="Selecione o tipo de Prato" name="Id_TipoPrato" required>
+                                {{#each resultTipoPrato}}
+                                <option value="{{this.Id_Tipo}}">{{this.Id_Tipo}} - {{this.Nome}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Descrição">Descrição:</label>
+                            <input type="text" name="Descrição" placeholder="Descrição do prato" required>
+                        </div>
+                    </div>
+
+                    <div>
+                        <div class="form-control">
+                            <label for="Valor">Valor:</label>
+                            <input type="decimal" name="Valor" placeholder="Valor do prato" required>
+                        </div>
+
+                        <input type="submit" value="Cadastrar Prato" style="margin-top: 18px;" class="btn-primary">
+                    </div>
+                </form>
+            </div>
+
+            
+
+            <div id="Update" class="modal-container ocultar">
+                <form action="/restaurantes/editaAvaliacao" method="POST" class="new-form">
+                    <div class="form-control" style="margin-right: 40px;">
+                        <h1>Update</h1>
+                        <span>Edite a avaliação do restaurante a sua escolha</span>
+                    </div>
+
+                    <div>
+                        <div class="form-control">
+                            <label for="CNPJ">CNPJ:</label>
+                            <select title="Selecione o CNPJ" name="CNPJ" required>
+                                {{#each restaurantes}}
+                                <option value="{{this.CNPJ}}">{{this.CNPJ}} - {{this.Nome_Restaurante}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <div class="form-control">
+                            <label for="Avaliação">Avaliação:</label>
+                            <select title="Selecione a avaliação" name="Avaliação" required>
+                                <option value="1">1 Estrela</option>
+                                <option value="2">2 Estrelas</option>
+                                <option value="3">3 Estrelas</option>
+                                <option value="4">4 Estrelas</option>
+                                <option value="5">5 Estrelas</option>
+                            </select>
+                        </div>
+
+                        <input type="submit" value="Atualizar" class="btn-primary">
+                    </div>
+                </form>
+            </div>
+
+            <div id="Delete" class="modal-container ocultar">
+                <form action="/restaurantes/DeleteRestaurante" method="POST" class="new-form">
+                    <div class="form-control" style="margin-right: 40px;">
+                        <h1>Delete</h1>
+                        <span>Apague dados de alguma tabela</span>
+                    </div>
+
+                    <div>
+                        <div class="form-control">
+                            <label for="CNPJ">CNPJ:</label>
+                            <select title="Selecione o CNPJ" name="CNPJ" required>
+                                {{#each restaurantes}}
+                                <option value="{{this.CNPJ}}">{{this.CNPJ}} - {{this.Nome_Restaurante}}</option>
+                                {{/each}}
+                            </select>
+                        </div>
+
+                        <input type="submit" value="Deletar" class="btn-primary">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<div class="tab">
+    <button class="tablinks active" onclick="openTab(event,'aba1')">Lista de restaurantes</button>
+    <button class="tablinks" onclick="openTab(event,'aba2')">Média de preço</button>
+    <button class="tablinks" onclick="openTab(event,'aba3')">Lista de pratos</button>
+    <button class="tablinks" onclick="openTab(event,'aba4')">Média de avaliação por Categoria</button>
+</div>
+
+<div id="aba1" class="tabContent" style="display: block;">
+    <div class="restaurant-list">
+        <h2 class="titulo">Lista de restaurantes</h2>
+        <div style="overflow-y: auto; height: calc(700px - 48px);">
+            <table style="width: 100%;">
+                <tr>
+                    <th>CNPJ</th>
+                    <th>Nome</th>
+                    <th>Categoria</th>
+                    <th>Endereço</th>
+                    <th>Cidade</th>
+                    <th>Estado</th>
+                    <th>Avaliação</th>
+                </tr>
+                {{#each restaurantes}}
+                <tr>
+                    <td>{{CNPJ}}</td>
+                    <td>{{Nome_Restaurante}}</td>
+                    <td>{{Nome_Categoria}}</td>
+                    <td>{{Endereco}}</td>
+                    <td>{{Cidade}}</td>
+                    <td>{{Estado}}</td>
+                    <td>{{Avaliação}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="aba2" class="tabContent">
+    <div class="restaurant-list">
+        <h2 class="titulo">Lista de restaurantes com média de preço maior que {{mediaPrecoDesejada}}</h2>
+        <form action="/" method="GET" class="form"
+            style="max-width: 300px; margin: 0 auto; background-color: #f9f9f9; padding: 10px; border-radius: 10px; box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);">
+            <label for="mediaPreco" style="display: block; margin-bottom: 5px;">Média de Preços Maior Que:</label>
+            <input type="number" name="mediaPreco" placeholder="Digite a média de preços" required
+                style="width: 100%; padding: 8px; margin-bottom: 10px; box-sizing: border-box;">
+            <input type="submit" value="Filtrar Restaurantes"
+                style="background-color:var(--primary); color: white; padding: 10px; border: none; cursor: pointer; width: 100%;">
+        </form>
+        <div style="overflow-y: auto; height: calc(700px - 48px);">
+            <table style="width: 100%;">
+                <tr>
+                    <th>Nome_Restaurante</th>
+                    <th>Media_Preco</th>
+                    <th>Total_PrecoPratosRest</th>
+                    <th>Avaliacao Restaurante</th>
+                    
+                </tr>
+                {{#each resultsRestauranteMedia}}
+                <tr>
+                    <td>{{Nome_Restaurante}}</td>
+                    <td>{{Media_Preco}}</td>
+                    <td>{{Total_PrecoPratosRest}}</td>
+                    <td>{{Avaliacao}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="aba3" class="tabContent">
+    <div class="restaurant-list">
+        <h2 class="titulo">Lista de pratos</h2>
+        <div style="overflow-y: auto; height: calc(700px - 48px);">
+            <table style="width: 100%;">
+                <tr>
+                    <th>Id_Pratos</th>
+                    <th>Nome Restaurante</th>
+                    <th>Nome_Prato</th>
+                    <th>Id_Tipo_Prato</th>
+                    <th>Descrição</th>
+                    <th>Valor</th>
+                </tr>
+                {{#each pratos}}
+                <tr>
+                    <td>{{Id_Pratos}}</td>
+                    <td>{{Nome_Rest}}</td>
+                    <td>{{Nome_Prato}}</td>
+                    <td>{{Tipo_Prato}}</td>
+                    <td>{{Descrição}}</td>
+                    <td>{{Valor}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
+
+<div id="aba4" class="tabContent">
+    <div class="restaurant-list">
+        <h2 class="titulo">Média de avaliação por Categoria/Resturante com RollUP</h2>
+        <div style="overflow-y: auto; height: calc(700px - 48px);">
+            <table style="width: 100%;">
+                <tr>
+                    <th>Nome_Categoria</th>
+                    <th>Nome_Restaurante</th>
+                    <th>Total_Avaliacao</th>
+                </tr>
+                {{#each resultPratoRollUp}}
+                <tr>
+                    <td>{{Nome_Categoria}}</td>
+                    <td>{{Nome_Restaurante}}</td>
+                    <td>{{Total_Avaliacao}}</td>
+                </tr>
+                {{/each}}
+            </table>
+        </div>
+    </div>
+</div>
