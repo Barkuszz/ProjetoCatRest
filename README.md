@@ -1,6 +1,6 @@
 # Nome do Seu Projeto
 
-Projeto de banco de dados full stack para gerenciamento de Restaures e pratos
+Projeto de banco de dados full stack para gerenciamento de Restaurantes e pratos
 
 ## Tabela de Conteúdos
 
@@ -13,12 +13,10 @@ Nesse projeto vc pode gerenciar restaurantes no frontend, assim explorando os co
 
 ## Tecnologias Utilizadas
 
-Liste as principais tecnologias e linguagens de programação que você usou para desenvolver o projeto. Por exemplo:
-
-- HTML
+- Handlebars (o handlebars é uma ferramenta muito útil alternativa ao html)
 - CSS
 - JavaScript
-- [Banco de Dados](link para o banco de dados)
+- Banco de Dados
 
 ## Como Usar
 
