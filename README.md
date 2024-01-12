@@ -1,19 +1,15 @@
 # Nome do Seu Projeto
 
-Descrição concisa e informativa sobre o seu projeto.
+Projeto de banco de dados full stack para gerenciamento de Restaures e pratos
 
 ## Tabela de Conteúdos
 
-- [Visão Geral](#visão-geral)
-- [Tecnologias Utilizadas](#tecnologias-utilizadas)
-- [Como Usar](#como-usar)
-- [Contribuição](#contribuição)
-- [Licença](#licença)
-- [Contato](#contato)
+- [Projeto Full Stack utilizando Banco de Dados](#visão-geral)
+- [HTML(handlebars), CSS,JS, SQL](#tecnologias-utilizadas)
 
 ## Visão Geral
 
-Uma breve explicação do que é o seu projeto e qual problema ele resolve. Inclua capturas de tela, se possível.
+Nesse projeto vc pode gerenciar restaurantes no frontend, assim explorando os conceitos de SQL introduzidos no banco de dados
 
 ## Tecnologias Utilizadas
 
@@ -22,16 +18,16 @@ Liste as principais tecnologias e linguagens de programação que você usou par
 - HTML
 - CSS
 - JavaScript
-- [Framework XYZ](link para o framework)
-- [Banco de Dados ABC](link para o banco de dados)
+- [Banco de Dados](link para o banco de dados)
 
 ## Como Usar
 
-Forneça instruções claras sobre como instalar, configurar e executar o seu projeto. Isso pode incluir comandos de terminal, configurações de ambiente, etc.
+É necessario primeiramente iniciar o mysql, eu particularmente usei o XAMPP. A ferramenta para banco de dados que utilizei foi o MYsql Workbench com a conexão criada pelo xampp.
+importe o SQL que disponibilizei para o mysql workbench e rode o programa para que o banco de dados seja criado.
+Se necessário altere os dados da conexão do mysql no arquivo JS para a sua máquina 
 
 ```bash
-# Exemplo de comandos de instalação
+# Comando para se iniciar o projeto
 npm install
 
-# Exemplo de comandos de execução
-npm start
+
