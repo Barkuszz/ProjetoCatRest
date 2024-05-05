@@ -1,4 +1,4 @@
-# Nome do Seu Projeto
+# Gerenciamento de Restaurantes
 
 Projeto de banco de dados full stack para gerenciamento de Restaurantes e pratos
 
